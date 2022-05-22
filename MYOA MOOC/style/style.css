@@ -31,7 +31,7 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 7%;
+    height: 70px;
 }
 #app_logo {
     position: absolute;
@@ -41,11 +41,6 @@ button {
     margin-left: 15px;
     border-radius: 7%;
     background-color: #00838f;
-}
-.headbar a {
-    font-size: 180%;
-    color: #00838f;
-    margin-right: 15px;
 }
 /* channels lista area */
 .app_bar {
@@ -112,8 +107,21 @@ i {
 }
 /* chat area */
 .messages {
+    overflow: scroll;
     left: 400px;
     width: calc(100% - 400px);
+}
+.messages .headbar {
+    position: fixed;
+    width: calc(100% - 400px);
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 5px solid white;
+}
+.messages .headbar a {
+    font-size: 180%;
+    color: #00838f;
+    margin-right: 15px;
 }
 .messages .headbar h1 {
     margin-left: 15px;
@@ -122,6 +130,9 @@ i {
     width: 100%;
 }
 .all-mes {
+    padding-right: 30px;
+    margin-top: 70px;
+    margin-bottom: 79px;
     display: block;
     /* margin-right: 20px; */
 }
@@ -129,37 +140,43 @@ i {
     display: flex;
     padding-top: 20px;
 }
-.mes h2{
+.mes h2 {
     margin-bottom: 10px;
     font-size: 100%;
 }
-.mes i {
-    margin-left: 18px;
+.mes i, .incomming i{
+    /* margin-left: 18px; */
     font-size: 220%;
 }
-.mes .icon {
+.mes .inc-icon, .incomming .inc-icon {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-bottom: 15px;
+    padding-bottom: 20px;
 }
-.mes #inc-icon i {
+.mes .inc-icon i {
     margin-left: 18px;
-    margin-right: 18px;
+    /* margin-right: 18px; */
 }
-.mes small {
+.all-mes small {
     color: rgb(100, 100, 100);
     /* margin-left: 20px; */
     display: flex;
     justify-content: flex-start;
     margin-left: 20px;
 }
-#incomming {
+.incomming {
+    display: flex;
     justify-content: flex-end;
-    margin-right: auto;
+    padding-top: 20px;
+    /* margin-right: auto; */
 }
-#incomming small {
+.incomming small {
     justify-content: flex-end;
+}
+.incomming .inc-icon i {
+    margin-left: 18px;
+    margin-right: 18px;
 }
 .mes-content {
     border-top-left-radius: 20px;
@@ -183,9 +200,9 @@ i {
     color: white;
 }
 #input-area {
-    width: 100%;
+    width: calc(100% - 400px);
     height: 7%;
-    position: absolute;
+    position: fixed;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -209,11 +226,12 @@ i {
     margin: 20px 20px;
 }
 
-#input-area i:hover, a:hover{
+#input-area i:hover,
+a:hover {
     cursor: pointer;
 }
 
-#input-area input{
+#input-area input {
     height: 45%;
     width: 90%;
     border: none;
