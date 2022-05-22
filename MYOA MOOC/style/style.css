@@ -1,0 +1,102 @@
+* {
+    font-family: “Roboto”, “Arial”, “sans-serif”;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+section {
+    position: fixed;
+    /* align-self: top; */
+    height: 100vh;
+}
+h1, h2 {
+    color: #00838f;
+}
+h2 {
+    font-size: small;
+}
+ul {
+    padding: 0;
+}
+button {
+    background-color: #00838f;
+    color: white;
+    font-size: larger;
+    text-transform: uppercase;
+}
+.headbar{
+    background-color: #eeeeee;
+    display: flex;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    align-items: center;
+    height: 5%;
+}
+.headbar img{
+    height: 56px;
+    background-color: #00838f;
+}
+.headbar button{
+    margin-left: 6px;
+}
+/* channels lista area */
+.app_bar{
+    width: 399px;
+    height: 100vh;
+    border-right: 1px solid rgb(175, 173, 173);
+}
+.app_bar .channel-list{
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.app_bar .channel-list small{
+    color: rgb(77, 76, 76);
+}
+.app_bar h2{
+    padding-left: 10px;
+    font-size: 90%;
+    text-transform: uppercase;
+}
+.app_bar li{
+    box-sizing: border-box;
+    padding: 22px;
+    height: 66px;
+}
+.college{
+    background-color: #eeeeee;
+    border-right: 4.5px solid #00838f;
+    border-radius: 1%;
+}
+/* chat area */
+.messages{
+    left: 400px;
+    width: calc(100% - 400px);
+}
+.messages p{
+    width: 75%;
+}
+.all-mes{
+    margin-right: 20px;
+}
+.mes {
+    padding-top: 20px;
+}
+.mes small {
+    color: rgb(100, 100, 100);
+}
+.mes-content {
+    border-radius: 2%;
+    margin-left: 20px;
+    padding: 15px;
+    background-color: #eeeeee;
+}
+.mes-content-self {
+    border-radius: 2%;
+    margin-left: 20px;
+    padding: 10px;
+    background-color: #00838f;
+}
+.mes-content-self p {
+    color: white;
+}

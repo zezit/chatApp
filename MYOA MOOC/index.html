@@ -4,95 +4,114 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <!-- external css -->
+        <link rel="stylesheet" href="./style/style.css" />
+        <!-- fonts stylesheet -->
+        <link
+            href="https://fonts.googleapis.com/css?family=Roboto"
+            rel="stylesheet"
+        />
 
         <title>chatter|app</title>
-        
-        <style>
-            * {
-                font-family: “Roboto”, “Arial”, “sans-serif”;
-                list-style: none;
-            }
-            h1,
-            h2 {
-                color: #00838f;
-            }
-            h2 {
-                font-size: small;
-            }
-            p {
-                background-color: #eeeeee;
-            }
-            ul {
-                padding: 0;
-            }
-            button {
-                background-color: #00838f;
-                color: white;
-                font-size: larger;
-                text-transform: uppercase;
-            }
-        </style>
     </head>
 
     <body>
         <!-- Channels area -->
-        <section>
+        <section class="app_bar">
             <!-- Title of the page (app title) -->
-            <h1>chatter|app</h1>
+            <div class="headbar">
+                <img
+                    id="app_logo"
+                    src="https://ip.lfe.mw.tum.de/sections/moocus.png"
+                    alt="app logo"
+                />
+                <h1>chatter|app</h1>
+            </div>
 
-            <!-- Channels -->
-            <h2>Favorites</h2>
-            <ul>
-                <li><b>Friends </b><small>09:11</small></li>
-                <li><b>College </b><small>15:30</small></li>
-            </ul>
+            <div class="channel-list">
+                <!-- Channels -->
+                <h2>Favorites</h2>
+                <ul>
+                    <li>Friends <small>09:11</small></li>
+                    <li class="college">College <small>15:30</small></li>
+                </ul>
+            </div>
+            <div class="channel-list">
+                <h2>Regular</h2>
 
-            <h2>Regular</h2>
-
-            <ul>
-                <li><b>Work </b><small>Monday</small></li>
-                <li><b>Gym </b><small>16 May 2022</small></li>
-            </ul>
-            <!-- end of Channels -->
+                <ul>
+                    <li>Work <small>Monday</small></li>
+                    <li>Gym <small>16 May 2022</small></li>
+                </ul>
+                <!-- end of Channels -->
+            </div>
         </section>
 
         <!-- Chat area -->
-        <section>
+        <section class="messages">
             <!-- Group name -->
-            <h1>College</h1>
-            <button>FAVORITE</button>
-            <div>
-                <h2>Peter Pan</h2>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Cras massa diam, eleifend ut rutrum sit amet, dictum eu
-                    nulla. Integer porta et mauris et tristique.
-                </p>
-                <!-- Date/Time field -->
-                <small>19:11</small>
+            <div class="headbar">
+                <h1>College</h1>
+                <button>FAVORITE</button>
+            </div>
 
-                <h2>Jessica Clark</h2>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Suspendisse porttitor erat at aliquet faucibus. Vivamus
-                    pulvinar velit orci, non pharetra justo eleifend id.
-                    Suspendisse egestas.
-                </p>
-                <!-- Date/Time field -->
-                <small>19:15</small>
+            <div class="all-mes">
+                <div class="mes">
+                    <div class="mes-content">
+                        <h2>Peter Pan</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit. Cras massa diam, eleifend ut rutrum sit amet,
+                            dictum eu nulla. Integer porta et mauris et
+                            tristique.
+                        </p>
+                    </div>
+                    <!-- Date/Time field -->
+                    <small>19:11</small>
+                </div>
 
-                <h2>Barry Allen</h2>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Phasellus eget mattis odio. Phasellus dapibus consequat nunc
-                    eget luctus. Aliquam sagittis eros vitae nisl vulputate,
-                    non.
-                </p>
-                <!-- Date/Time field -->
-                <small>19:15</small>
-                <div>
+                <div class="mes">
+                    <div class="mes-content-self">
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit. Proin lacinia ante et urna mattis hendrerit.
+                            Sed ac mi fermentum massa.
+                        </p>
+                    </div>
+                    <!-- Date/Time field -->
+                    <small>19:13</small>
+                </div>
+
+                <div class="mes">
+                    <div class="mes-content">
+                        <h2>Jessica Clark</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit. Suspendisse porttitor erat at aliquet
+                            faucibus. Vivamus pulvinar velit orci, non pharetra
+                            justo eleifend id. Suspendisse egestas.
+                        </p>
+                    </div>
+                    <!-- Date/Time field -->
+                    <small>19:15</small>
+                </div>
+
+                <div class="mes">
+                    <div class="mes-content">
+                        <h2>Barry Allen</h2>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing
+                            elit. Phasellus eget mattis odio. Phasellus dapibus
+                            consequat nunc eget luctus. Aliquam sagittis eros
+                            vitae nisl vulputate, non.
+                        </p>
+                    </div>
+                    <!-- Date/Time field -->
+                    <small>19:15</small>
+                </div>
+                <div id="send">
                     <!-- Text area -->
-                    <input type="text" />
+                    <input type="text" placeholder="... write your message" />
                     <button>SEND</button>
                 </div>
             </div>
