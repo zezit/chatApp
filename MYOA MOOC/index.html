@@ -11,8 +11,13 @@
             href="https://fonts.googleapis.com/css?family=Roboto"
             rel="stylesheet"
         />
+        <!-- Icons -->
+        <link
+            rel="stylesheet"
+            href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        />
 
-        <title>chatter|app</title>
+        <title>chatter | app</title>
     </head>
 
     <body>
@@ -25,23 +30,36 @@
                     src="https://ip.lfe.mw.tum.de/sections/moocus.png"
                     alt="app logo"
                 />
-                <h1>chatter|app</h1>
+                <h1>chatter | app</h1>
             </div>
+            <a href="#" class="fab" id="action-button">+</a>
 
             <div class="channel-list">
                 <!-- Channels -->
                 <h2>Favorites</h2>
                 <ul>
-                    <li>Friends <small>09:11</small></li>
-                    <li class="college">College <small>15:30</small></li>
+                    <li>
+                        <i class="material-icons">group</i><span>Friends </span
+                        ><small>09:11</small>
+                    </li>
+                    <li class="college">
+                        <i class="material-icons">group</i><span>College </span
+                        ><small>15:30</small>
+                    </li>
                 </ul>
             </div>
             <div class="channel-list">
                 <h2>Regular</h2>
 
                 <ul>
-                    <li>Work <small>Monday</small></li>
-                    <li>Gym <small>16 May 2022</small></li>
+                    <li>
+                        <i class="material-icons">group</i><span>Work</span
+                        ><small>Monday</small>
+                    </li>
+                    <li>
+                        <i class="material-icons">group</i><span>Gym</span
+                        ><small>16 May 2022</small>
+                    </li>
                 </ul>
                 <!-- end of Channels -->
             </div>
@@ -52,67 +70,160 @@
             <!-- Group name -->
             <div class="headbar">
                 <h1>College</h1>
-                <button>FAVORITE</button>
+                <!-- favorite button -->
+                <a href="#" class="material-icons">favorite</a>
             </div>
 
             <div class="all-mes">
                 <div class="mes">
-                    <div class="mes-content">
-                        <h2>Peter Pan</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Cras massa diam, eleifend ut rutrum sit amet,
-                            dictum eu nulla. Integer porta et mauris et
-                            tristique.
-                        </p>
+                    <div class="icon">
+                        <i class="material-icons">account_circle</i>
                     </div>
-                    <!-- Date/Time field -->
-                    <small>19:11</small>
+                    <div>
+                        <div class="mes-content">
+                            <h2>Peter Pan</h2>
+
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Cras massa diam, eleifend ut
+                                rutrum sit amet, dictum eu nulla. Integer porta
+                                et mauris et tristique.
+                            </p>
+                        </div>
+                        <!-- Date/Time field -->
+                        <small>19:11</small>
+                    </div>
+                </div>
+
+                <div class="mes" id="incomming">
+                    <div>
+                        <div class="mes-content-self">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Proin lacinia ante et urna
+                                mattis hendrerit. Sed ac mi fermentum massa.
+                            </p>
+                        </div>
+                        <!-- Date/Time field -->
+                        <small>19:13</small>
+                    </div>
+                    <div class="icon" id="inc-icon">
+                        <i class="material-icons">account_circle</i>
+                    </div>
+                </div>
+
+                <div class="mes" id="incomming">
+                    <div>
+                        <div class="mes-content-self">
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Proin lacinia ante et urna
+                                mattis hendrerit. Sed ac mi fermentum massa.
+                            </p>
+                        </div>
+                        <!-- Date/Time field -->
+                        <small>19:13</small>
+                    </div>
+                    <div class="icon" id="inc-icon">
+                        <i class="material-icons">account_circle</i>
+                    </div>
+                </div>
+
+                <div class="mes" id="incomming">
+                    <div>
+                        <div class="mes-content-self">
+                            <p>Lorem ipsum.</p>
+                        </div>
+                        <!-- Date/Time field -->
+                        <small>19:13</small>
+                    </div>
+                    <div class="icon" id="inc-icon">
+                        <i class="material-icons">account_circle</i>
+                    </div>
                 </div>
 
                 <div class="mes">
-                    <div class="mes-content-self">
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Proin lacinia ante et urna mattis hendrerit.
-                            Sed ac mi fermentum massa.
-                        </p>
+                    <div class="icon">
+                        <i class="material-icons">account_circle</i>
                     </div>
-                    <!-- Date/Time field -->
-                    <small>19:13</small>
+                    <div>
+                        <div class="mes-content">
+                            <h2>Jessica Clark</h2>
+
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Suspendisse porttitor erat at
+                                aliquet faucibus. Vivamus pulvinar velit orci,
+                                non pharetra justo eleifend id. Suspendisse
+                                egestas.
+                            </p>
+                        </div>
+                        <!-- Date/Time field -->
+                        <small>19:15</small>
+                    </div>
                 </div>
 
                 <div class="mes">
-                    <div class="mes-content">
-                        <h2>Jessica Clark</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Suspendisse porttitor erat at aliquet
-                            faucibus. Vivamus pulvinar velit orci, non pharetra
-                            justo eleifend id. Suspendisse egestas.
-                        </p>
+                    <div class="icon">
+                        <i class="material-icons">account_circle</i>
                     </div>
-                    <!-- Date/Time field -->
-                    <small>19:15</small>
+                    <div>
+                        <div class="mes-content">
+                            <h2>Barry Allen</h2>
+
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit. Phasellus eget mattis odio.
+                                Phasellus dapibus consequat nunc eget luctus.
+                                Aliquam sagittis eros vitae nisl vulputate, non.
+                            </p>
+                        </div>
+                        <!-- Date/Time field -->
+                        <small>19:15</small>
+                    </div>
                 </div>
 
                 <div class="mes">
-                    <div class="mes-content">
-                        <h2>Barry Allen</h2>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetur adipiscing
-                            elit. Phasellus eget mattis odio. Phasellus dapibus
-                            consequat nunc eget luctus. Aliquam sagittis eros
-                            vitae nisl vulputate, non.
-                        </p>
+                    <div class="icon">
+                        <i class="material-icons">account_circle</i>
                     </div>
-                    <!-- Date/Time field -->
-                    <small>19:15</small>
+                    <div>
+                        <div class="mes-content">
+                            <h2>Barry Allen</h2>
+
+                            <p>Lorem ipsum non.</p>
+                        </div>
+                        <!-- Date/Time field -->
+                        <small>19:15</small>
+                    </div>
                 </div>
-                <div id="send">
-                    <!-- Text area -->
-                    <input type="text" placeholder="... write your message" />
-                    <button>SEND</button>
+
+                <div class="mes" id="incomming">
+                    <div>
+                        <div class="mes-content-self">
+                            <p>Lorem ipsum.</p>
+                        </div>
+                        <!-- Date/Time field -->
+                        <small>19:17</small>
+                    </div>
+                    <div class="icon" id="inc-icon">
+                        <i class="material-icons">account_circle</i>
+                    </div>
+                </div>
+
+                <div id="input-area">
+                    <i class="material-icons" id="emoticon-button"
+                        >insert_emoticon</i
+                    >
+                    <input
+                        type="text"
+                        id="message-input"
+                        name="message-input"
+                        minlength="1"
+                        maxlength="500"
+                        placeholder="... write your message"
+                    />
+                    <a class="material-icons button" id="send-button">send</a>
                 </div>
             </div>
         </section>
