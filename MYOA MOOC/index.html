@@ -16,11 +16,10 @@
             rel="stylesheet"
             href="https://fonts.googleapis.com/icon?family=Material+Icons"
         />
-
         <title>chatter | app</title>
     </head>
 
-    <body>
+    <body onload="app_alive()">
         <!-- Channels area -->
         <section class="app_bar">
             <!-- Title of the page (app title) -->
@@ -38,13 +37,13 @@
                 <!-- Channels -->
                 <h2>Favorites</h2>
                 <ul>
-                    <li>
-                        <i class="material-icons">group</i><span>Friends </span
-                        ><small>09:11</small>
+                    <li onclick="switchChannel(ch1)">
+                        <i class="material-icons">group</i
+                        ><span id="ch1">Friends</span><small>09:11</small>
                     </li>
-                    <li class="college">
-                        <i class="material-icons">group</i><span>College </span
-                        ><small>15:30</small>
+                    <li class="selected" onclick="switchChannel(ch2)">
+                        <i class="material-icons">group</i
+                        ><span id="ch2">College</span><small>15:30</small>
                     </li>
                 </ul>
             </div>
@@ -52,13 +51,13 @@
                 <h2>Regular</h2>
 
                 <ul>
-                    <li>
-                        <i class="material-icons">group</i><span>Work</span
-                        ><small>Monday</small>
+                    <li onclick="switchChannel(ch3)">
+                        <i class="material-icons">group</i
+                        ><span id="ch3">Work</span><small>Monday</small>
                     </li>
-                    <li>
-                        <i class="material-icons">group</i><span>Gym</span
-                        ><small>16 May 2022</small>
+                    <li onclick="switchChannel(ch4)">
+                        <i class="material-icons">group</i
+                        ><span id="ch4">Gym</span><small>16 May 2022</small>
                     </li>
                 </ul>
                 <!-- end of Channels -->
@@ -69,9 +68,9 @@
         <section class="messages">
             <!-- Group name -->
             <div class="headbar">
-                <h1>College</h1>
+                <h1 id="channelName">College</h1>
                 <!-- favorite button -->
-                <a href="#" class="material-icons">favorite</a>
+                <a id="favorite-bt" href="#" class="material-icons" onclick="add_to_fav(get_selected())">favorite</a>
             </div>
 
             <div class="all-mes">
@@ -210,7 +209,6 @@
                         <i class="material-icons">account_circle</i>
                     </div>
                 </div>
-
             </div>
             <div id="input-area">
                 <i class="material-icons" id="emoticon-button"
@@ -227,5 +225,9 @@
                 <a class="material-icons button" id="send-button">send</a>
             </div>
         </section>
+
+        <!-- js files -->
+        <script src="./script/main.js"></script>
+        <script src="./script/channels.js"></script>
     </body>
 </html>

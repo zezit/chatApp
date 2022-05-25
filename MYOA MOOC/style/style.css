@@ -7,7 +7,6 @@
 }
 section {
     position: fixed;
-    /* align-self: top; */
     height: 100vh;
 }
 h1,
@@ -100,7 +99,7 @@ i {
     padding: 22px;
     height: 66px;
 }
-.college {
+.selected {
     background-color: #eeeeee;
     border-right: 4.5px solid #00838f;
     border-radius: 1%;
