@@ -70,159 +70,72 @@
             <div class="headbar">
                 <h1 id="channelName">College</h1>
                 <!-- favorite button -->
-                <a id="favorite-bt" href="#" class="material-icons" onclick="add_to_fav(get_selected())">favorite</a>
-            </div>
-
-            <div class="all-mes">
-                <div class="mes">
-                    <div class="inc-icon">
-                        <i class="material-icons">account_circle</i>
-                    </div>
-                    <div>
-                        <div class="mes-content">
-                            <h2>Peter Pan</h2>
-
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Cras massa diam, eleifend ut
-                                rutrum sit amet, dictum eu nulla. Integer porta
-                                et mauris et tristique.
-                            </p>
-                        </div>
-                        <!-- Date/Time field -->
-                        <small>19:11</small>
-                    </div>
-                </div>
-
-                <div class="incomming">
-                    <div>
-                        <div class="mes-content-self">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Proin lacinia ante et urna
-                                mattis hendrerit. Sed ac mi fermentum massa.
-                            </p>
-                        </div>
-                        <!-- Date/Time field -->
-                        <small>19:13</small>
-                    </div>
-                    <div class="inc-icon">
-                        <i class="material-icons">account_circle</i>
-                    </div>
-                </div>
-
-                <div class="incomming">
-                    <div>
-                        <div class="mes-content-self">
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Proin lacinia ante et urna
-                                mattis hendrerit. Sed ac mi fermentum massa.
-                            </p>
-                        </div>
-                        <!-- Date/Time field -->
-                        <small>19:13</small>
-                    </div>
-                    <div class="inc-icon">
-                        <i class="material-icons">account_circle</i>
-                    </div>
-                </div>
-
-                <div class="incomming">
-                    <div>
-                        <div class="mes-content-self">
-                            <p>Lorem ipsum.</p>
-                        </div>
-                        <!-- Date/Time field -->
-                        <small>19:13</small>
-                    </div>
-                    <div class="inc-icon">
-                        <i class="material-icons">account_circle</i>
-                    </div>
-                </div>
-
-                <div class="mes">
-                    <div class="inc-icon">
-                        <i class="material-icons">account_circle</i>
-                    </div>
-                    <div>
-                        <div class="mes-content">
-                            <h2>Jessica Clark</h2>
-
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Suspendisse porttitor erat at
-                                aliquet faucibus. Vivamus pulvinar velit orci,
-                                non pharetra justo eleifend id. Suspendisse
-                                egestas.
-                            </p>
-                        </div>
-                        <!-- Date/Time field -->
-                        <small>19:15</small>
-                    </div>
-                </div>
-
-                <div class="mes">
-                    <div class="inc-icon">
-                        <i class="material-icons">account_circle</i>
-                    </div>
-                    <div>
-                        <div class="mes-content">
-                            <h2>Barry Allen</h2>
-
-                            <p>
-                                Lorem ipsum dolor sit amet, consectetur
-                                adipiscing elit. Phasellus eget mattis odio.
-                                Phasellus dapibus consequat nunc eget luctus.
-                                Aliquam sagittis eros vitae nisl vulputate, non.
-                            </p>
-                        </div>
-                        <!-- Date/Time field -->
-                        <small>19:15</small>
-                    </div>
-                </div>
-
-                <div class="mes">
-                    <div class="inc-icon">
-                        <i class="material-icons">account_circle</i>
-                    </div>
-                    <div>
-                        <div class="mes-content">
-                            <h2>Barry Allen</h2>
-
-                            <p>Lorem ipsum non.</p>
-                        </div>
-                        <!-- Date/Time field -->
-                        <small>19:15</small>
-                    </div>
-                </div>
-
-                <div class="incomming">
-                    <div>
-                        <div class="mes-content-self">
-                            <p>Lorem ipsum.</p>
-                        </div>
-                        <!-- Date/Time field -->
-                        <small>19:17</small>
-                    </div>
-                    <div class="inc-icon">
-                        <i class="material-icons">account_circle</i>
-                    </div>
-                </div>
-            </div>
-            <div id="input-area">
-                <i class="material-icons" id="emoticon-button"
-                    >insert_emoticon</i
+                <a
+                    id="favorite-bt"
+                    href="#"
+                    class="material-icons"
+                    onclick="add_to_fav()"
+                    >favorite</a
                 >
-                <input
-                    type="text"
-                    id="message-input"
-                    name="message-input"
-                    minlength="1"
-                    maxlength="500"
-                    placeholder="... write your message"
-                />
-                <a class="material-icons button" id="send-button">send</a>
+            </div>
+            <div class="all-mes">
+                <div class="all-mes-wraper">
+                    <div class="mes">
+                        <div class="inc-icon">
+                            <i class="material-icons">account_circle</i>
+                        </div>
+                        <div>
+                            <div class="mes-content">
+                                <h2>Peter Pan</h2>
+
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit. Cras massa diam, eleifend
+                                    ut rutrum sit amet, dictum eu nulla. Integer
+                                    porta et mauris et tristique.
+                                </p>
+                            </div>
+                            <small>19:11</small>
+                        </div>
+                    </div>
+
+                    <div class="incomming">
+                        <div>
+                            <div class="mes-content-self">
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur
+                                    adipiscing elit. Proin lacinia ante et urna
+                                    mattis hendrerit. Sed ac mi fermentum massa.
+                                </p>
+                            </div>
+
+                            <small>19:13</small>
+                        </div>
+                        <div class="inc-icon">
+                            <i class="material-icons">account_circle</i>
+                        </div>
+                    </div>
+                </div>
+                <div id="input-area">
+                    <i class="material-icons" id="emoticon-button"
+                        >insert_emoticon</i
+                    >
+                    <input
+                        type="text"
+                        id="message-input"
+                        name="message-input"
+                        minlength="1"
+                        maxlength="500"
+                        placeholder="... write your message"
+                    />
+                    <a
+                        class="material-icons button"
+                        id="send-button"
+                        onclick="sendMessage()"
+                        >send</a
+                    >
+                </div>
+                <div id="bottom"></div>
             </div>
         </section>
 
