@@ -19,7 +19,7 @@
         <title>chatter | app</title>
     </head>
 
-    <body onload="app_alive()">
+    <body onload="init()">
         <!-- Channels area -->
         <section class="app_bar">
             <!-- Title of the page (app title) -->
@@ -33,29 +33,28 @@
             </div>
             <a href="#" class="fab" id="action-button">+</a>
 
-            <div class="channel-list">
+            <h2 id="fav">Favorites</h2>
+            <div class="channel-list" >
                 <!-- Channels -->
-                <h2>Favorites</h2>
-                <ul>
-                    <li onclick="switchChannel(ch1)">
+                <ul id="favorite-channels">
+                    <li onclick="switchChannel('ch1')">
                         <i class="material-icons">group</i
                         ><span id="ch1">Friends</span><small>09:11</small>
                     </li>
-                    <li class="selected" onclick="switchChannel(ch2)">
+                    <li class="selected" onclick="switchChannel('ch2')">
                         <i class="material-icons">group</i
                         ><span id="ch2">College</span><small>15:30</small>
                     </li>
                 </ul>
             </div>
-            <div class="channel-list">
-                <h2>Regular</h2>
-
-                <ul>
-                    <li onclick="switchChannel(ch3)">
+            <h2 id="reg">Regular</h2>
+            <div class="channel-list" >
+                <ul id="regular-channels">
+                    <li onclick="switchChannel('ch3')">
                         <i class="material-icons">group</i
                         ><span id="ch3">Work</span><small>Monday</small>
                     </li>
-                    <li onclick="switchChannel(ch4)">
+                    <li onclick="switchChannel('ch4')">
                         <i class="material-icons">group</i
                         ><span id="ch4">Gym</span><small>16 May 2022</small>
                     </li>
@@ -79,43 +78,7 @@
                 >
             </div>
             <div class="all-mes">
-                <div class="all-mes-wraper">
-                    <div class="mes">
-                        <div class="inc-icon">
-                            <i class="material-icons">account_circle</i>
-                        </div>
-                        <div>
-                            <div class="mes-content">
-                                <h2>Peter Pan</h2>
-
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Cras massa diam, eleifend
-                                    ut rutrum sit amet, dictum eu nulla. Integer
-                                    porta et mauris et tristique.
-                                </p>
-                            </div>
-                            <small>19:11</small>
-                        </div>
-                    </div>
-
-                    <div class="incomming">
-                        <div>
-                            <div class="mes-content-self">
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Proin lacinia ante et urna
-                                    mattis hendrerit. Sed ac mi fermentum massa.
-                                </p>
-                            </div>
-
-                            <small>19:13</small>
-                        </div>
-                        <div class="inc-icon">
-                            <i class="material-icons">account_circle</i>
-                        </div>
-                    </div>
-                </div>
+                <div class="all-mes-wraper"></div>
                 <div id="input-area">
                     <i class="material-icons" id="emoticon-button"
                         >insert_emoticon</i
@@ -128,19 +91,14 @@
                         maxlength="500"
                         placeholder="... write your message"
                     />
-                    <a
-                        class="material-icons button"
-                        id="send-button"
-                        onclick="sendMessage()"
-                        >send</a
-                    >
+                    <a class="material-icons button" id="send-button">send</a>
                 </div>
                 <div id="bottom"></div>
             </div>
         </section>
 
         <!-- js files -->
-        <script src="./script/main.js"></script>
+        <script type="module" src="./script/main.js"></script>
         <script src="./script/channels.js"></script>
     </body>
 </html>

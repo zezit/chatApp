@@ -1,39 +1,178 @@
-// object that has all useful info about the app channels
-const channels = {};
+import {
+    channel1,
+    channel2,
+    channel3,
+    channel4,
+    mockMessages,
+} from "./channels.js";
 
 /* Variables */
-let selectedChannel = 1;
+let channels = [];
 
+let selectedChannel = 1;
+var channel_name;
+let numberOfChannels = 4; // Saves the number of channels
 /* Functions */
 // executes when the app is loaded
-function app_alive() {
-    console.log("App is alive!");
-    createChannelsObjects();
-}
+window.init = function () {
+    console.log("App is initialized");
+    getChannels();
+    getMessages();
+    getLists();
+    isFavorite();
+    // loadMessagesIntoChannel();
+    // displayChannels();
+    // loadEmojis();
+    document
+        .getElementById("send-button")
+        .addEventListener("click", sendMessage);
+    // document
+    //     .getElementById("emoticon-button")
+    //     .addEventListener("click", toggleEmojiArea);
+    // document
+    //     .getElementById("close-emoticon-button")
+    //     .addEventListener("click", toggleEmojiArea);
+};
 
-// create an object to hold all channels info
-function createChannelsObjects() {
-    elements = document.querySelectorAll(".channel-list li span");
-    for (let index = 0; index < elements.length; index++) {
-        channels[index] = {
-            id: elements[index].id,
-            name: elements[index].textContent,
-            favorite: false,
-        };
+window.getLists = function () {
+    const favoriteList = document.getElementById("favorite-channels");
+    const regularList = document.getElementById("regular-channels");
+
+    let favoritesCount = 0;
+    // clear lists
+    favoriteList.innerHTML = "";
+    regularList.innerHTML = "";
+
+    channels.forEach((element) => {
+        if (element.favorite) {
+            // console.log(element);
+            favoritesCount++;
+            const currentListHtml =
+                `<li onclick="switchChannel('` +
+                element.id +
+                `')">
+                      <i class="material-icons">group</i
+                      ><span id="` +
+                element.id +
+                `">` +
+                element.name +
+                `</span><small>` +
+                "20:30" +
+                `</small>
+                  </li>`;
+
+            const div = document.querySelector("#favorite-channels");
+            // console.log(currentListHtml);
+            div.innerHTML += currentListHtml;
+        } else {
+            // console.log(element);
+            favoritesCount++;
+            const currentListHtml =
+                `<li onclick="switchChannel('` +
+                element.id +
+                `')">
+                      <i class="material-icons">group</i
+                      ><span id="` +
+                element.id +
+                `">` +
+                element.name +
+                `</span><small>` +
+                "20:30" +
+                `</small>
+                  </li>`;
+
+            const div = document.querySelector("#regular-channels");
+            div.innerHTML += currentListHtml;
+        }
+    });
+
+    document
+        .getElementById(channels[1].id)
+        .parentElement.classList.add("selected");
+};
+
+window.getChannels = function () {
+    channels[0] = channel1;
+    channels[1] = channel2;
+    channels[2] = channel3;
+    channels[3] = channel4;
+
+    // console.log(channels);
+};
+
+// create an object to hold all messages from channels
+window.getMessages = function () {
+    let muchMessages = channels[selectedChannel].messages;
+    let messageContainer;
+
+    if (Array.isArray(muchMessages)) {
+        muchMessages.forEach((element) => {
+            // console.log(element);
+
+            if (element.own) {
+                messageContainer =
+                    `<div class="incomming">
+            <div>
+                <div class="mes-content-self">
+                    <p>` +
+                    element.text +
+                    `</p>
+                </div>
+
+                <small>` +
+                    element.createdOn.getHours() +
+                    ":" +
+                    element.createdOn.getMinutes() +
+                    `</small>
+            </div>
+            <div class="inc-icon">
+                <i class="material-icons">account_circle</i>
+            </div>
+        </div>`;
+            } else {
+                messageContainer =
+                    `<div class="mes">
+                        <div class="inc-icon">
+                            <i class="material-icons">account_circle</i>
+                        </div>
+                        <div>
+                            <div class="mes-content">
+                                <h2>` +
+                    element.createdBy +
+                    `</h2>
+
+                                <p>
+                                    ` +
+                    element.text +
+                    `
+                                </p>
+                            </div>
+                            <small>` +
+                    element.createdOn.getHours() +
+                    ":" +
+                    element.createdOn.getMinutes() +
+                    `</small>
+                        </div>
+                    </div>`;
+            }
+            // console.log(messageContainer);
+            const div = document.querySelector(".all-mes-wraper");
+            if (messageContainer != "") {
+                div.innerHTML += messageContainer;
+            }
+        });
     }
-    console.log(channels);
-}
+};
 
 // changes channel and highlight it
-function switchChannel(channel) {
+window.switchChannel = function (channel) {
     // remove o último selecionado
     document.getElementsByClassName("selected")[0].classList.remove("selected");
-    // document.getElementsByClassName("mes-outgoing").classList.add(".hide-intes");
 
     let channels_lenght = Object.keys(channels).length;
     // acha as informações da id passada
     for (let index = 0; index < channels_lenght; index++) {
-        if (channel.id == channels[index].id) {
+        if (channel == channels[index].id) {
             // salva o index do canal selecionado
             selectedChannel = index;
         }
@@ -45,28 +184,36 @@ function switchChannel(channel) {
         .parentElement.classList.add("selected");
 
     // pega o titulo na tela das mensagens e substitui pelo cannal selecionado
-    showHeader(channel);
+    showHeader(channels[selectedChannel].name);
 
+    // atualiza as mensagens
+    channel_name = document.querySelectorAll("#channelName")[0].textContent;
+
+    // limpa tela
+    document.querySelectorAll(".all-mes-wraper")[0].innerHTML = "";
+
+    getMessages();
     // Verifica se o canal está favorito
     isFavorite();
-}
+    console.log(channels[selectedChannel].messages);
+};
 
 // change the header to the selected channel name
-function showHeader(channel) {
-    document.getElementById("channelName").innerHTML = channel.textContent;
-}
+window.showHeader = function (channel) {
+    document.getElementById("channelName").innerHTML = channel;
+};
 
 // verify is channel is favorite
-function isFavorite() {
+window.isFavorite = function () {
     if (channels[selectedChannel].favorite) {
         document.getElementById("favorite-bt").innerHTML = "favorite";
     } else {
         document.getElementById("favorite-bt").innerHTML = "favorite_border";
     }
-}
+};
 
 // add or remove channels from favorites
-function add_to_fav() {
+window.add_to_fav = function () {
     if (channels[selectedChannel].favorite == false) {
         console.log(
             "Adding " + channels[selectedChannel].name + " to favorites"
@@ -81,13 +228,33 @@ function add_to_fav() {
         document.getElementById("favorite-bt").innerHTML = "favorite_border";
     }
     isFavorite();
-}
+    getLists();
+};
 
-function sendMessage() {
+window.addMessage = function (message, current_date) {
+    const ChannelMessage = Object.create(mockMessages);
+
+    ChannelMessage.createdBy = "José Victor";
+    ChannelMessage.createdOn = new Date();
+    ChannelMessage.channel = channels[selectedChannel].name;
+    ChannelMessage.own = true;
+    ChannelMessage.text = message;
+
+    channels[selectedChannel].messages.push(ChannelMessage);
+};
+
+window.sendMessage = function () {
     var current = new Date();
     // pega a mensagem escrita
     var messageText = document.getElementById("message-input").value;
+    if (messageText) {
+        addMessage(messageText, current);
+    }
     console.log("Message: " + messageText);
+
+    var hours = current.getHours();
+    var minutes = current.getMinutes();
+
     let messageString;
     messageString =
         `<div class="incomming">
@@ -99,9 +266,9 @@ function sendMessage() {
                 </div>
 
                 <small>` +
-        current.getHours() +
+        hours +
         ":" +
-        current.getMinutes() +
+        minutes +
         `</small>
             </div>
             <div class="inc-icon">
@@ -116,11 +283,11 @@ function sendMessage() {
 
     document.getElementById("message-input").value = "";
     bottom();
-}
+    console.log(channels[selectedChannel].messages);
+};
 
 // auto scroll page
-function bottom() {
+window.bottom = function () {
     console.log("Bottom");
     document.getElementById("bottom").scrollIntoView();
-}
-
+};
