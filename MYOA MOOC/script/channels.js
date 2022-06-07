@@ -27,7 +27,7 @@ channel1.id = "ch1";
 channel1.name = "Friends";
 channel1.favorite = true;
 channel1.messages = [];
-channel1.latestMessage = new Date;
+channel1.latestMessage = "00:30";
 
 const channel2 = Object.create(mockChannels);
 channel2.id = "ch2";
@@ -36,21 +36,21 @@ channel2.favorite = false;
 channel2.messages = [];
 channel2.messages.push(Channel1Message1);
 channel2.messages.push(Channel1Message2);
-channel2.latestMessage = new Date;
+channel2.latestMessage = "04:45";
 
 const channel3 = Object.create(mockChannels);
 channel3.id = "ch3";
 channel3.name = "Work";
 channel3.favorite = false;
 channel3.messages = [];
-channel3.latestMessage = new Date;
+channel3.latestMessage = "13:20";
 
 const channel4 = Object.create(mockChannels);
 channel4.id = "ch4";
 channel4.name = "Gym";
 channel4.favorite = false;
 channel4.messages = [];
-channel4.latestMessage = new Date;
+channel4.latestMessage = "13:45";
 
 // Previous messages
 Channel1Message1.createdBy = "Peter Pan";

@@ -18,6 +18,7 @@ window.init = function () {
     console.log("App is initialized");
     getChannels();
     getMessages();
+    initLastMessage();
     getLists();
     isFavorite();
     // loadMessagesIntoChannel();
@@ -57,7 +58,7 @@ window.getLists = function () {
                 `">` +
                 element.name +
                 `</span><small>` +
-                "20:30" +
+                element.latestMessage +
                 `</small>
                   </li>`;
 
@@ -77,7 +78,7 @@ window.getLists = function () {
                 `">` +
                 element.name +
                 `</span><small>` +
-                "20:30" +
+                element.latestMessage +
                 `</small>
                   </li>`;
 
@@ -87,7 +88,7 @@ window.getLists = function () {
     });
 
     document
-        .getElementById(channels[1].id)
+        .getElementById(channels[selectedChannel].id)
         .parentElement.classList.add("selected");
 };
 
@@ -97,7 +98,7 @@ window.getChannels = function () {
     channels[2] = channel3;
     channels[3] = channel4;
 
-    // console.log(channels);
+    console.log(channels);
 };
 
 // create an object to hold all messages from channels
@@ -107,8 +108,6 @@ window.getMessages = function () {
 
     if (Array.isArray(muchMessages)) {
         muchMessages.forEach((element) => {
-            // console.log(element);
-
             if (element.own) {
                 messageContainer =
                     `<div class="incomming">
@@ -162,7 +161,48 @@ window.getMessages = function () {
             }
         });
     }
+    // initLastMessage();
 };
+
+function attLastMessage() {
+    var lastTime = "",
+        aux,
+        size;
+    // cria instancia de tempo
+    aux = new Date();
+    // Salva hora e minuto
+    lastTime = aux.getHours() + ":" + aux.getMinutes();
+    channels[selectedChannel].latestMessae = lastTime;
+    initLastMessage();
+    getLists();
+    // atualiza tempo da ultima menssagem
+    // atualiza html
+    // const smallTime = document
+    // .querySelector("#" + channels[selectedChannel].id)
+    // .parentElement.getElementsByTagName("small");
+    // smallTime.outterHtml = "";
+}
+
+function initLastMessage() {
+    var lastTime = "",
+        aux,
+        size;
+    channels.forEach((element) => {
+        size = element.messages.length - 1;
+        if (size < 0) {
+            size = 0;
+        }
+        if (size != 0) {
+            aux = new Date(element.messages[size].createdOn);
+            lastTime = aux.getHours() + ":" + aux.getMinutes();
+            // console.log(lastTime);
+            element.latestMessage = lastTime;
+        }
+    });
+    // getLists();
+    lastTime = "";
+    size = 0;
+}
 
 // changes channel and highlight it
 window.switchChannel = function (channel) {
@@ -175,9 +215,10 @@ window.switchChannel = function (channel) {
         if (channel == channels[index].id) {
             // salva o index do canal selecionado
             selectedChannel = index;
+            break;
         }
     }
-
+    console.log(channels[selectedChannel]);
     // hightlight no canal clicado
     document
         .getElementById(channels[selectedChannel].id)
@@ -284,6 +325,7 @@ window.sendMessage = function () {
     document.getElementById("message-input").value = "";
     bottom();
     console.log(channels[selectedChannel].messages);
+    attLastMessage();
 };
 
 // auto scroll page
