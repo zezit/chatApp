@@ -27,12 +27,21 @@ window.init = function () {
     document
         .getElementById("send-button")
         .addEventListener("click", sendMessage);
+    document
+        .querySelector("#input-area input")
+        .addEventListener("keypress", treatSendKey);
     // document
     //     .getElementById("emoticon-button")
     //     .addEventListener("click", toggleEmojiArea);
     // document
     //     .getElementById("close-emoticon-button")
     //     .addEventListener("click", toggleEmojiArea);
+};
+
+const treatSendKey = () => {
+    if (window.event.key === "Enter") {
+        document.getElementById("send-button").click();
+    }
 };
 
 window.getLists = function () {
@@ -188,12 +197,12 @@ function initLastMessage() {
         aux,
         size;
     channels.forEach((element) => {
-        size = element.messages.length - 1;
+        size = element.messages.length;
         if (size < 0) {
             size = 0;
         }
         if (size != 0) {
-            aux = new Date(element.messages[size].createdOn);
+            aux = new Date(element.messages[size - 1].createdOn);
             lastTime = aux.getHours() + ":" + aux.getMinutes();
             // console.log(lastTime);
             element.latestMessage = lastTime;
