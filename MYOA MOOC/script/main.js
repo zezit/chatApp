@@ -4,6 +4,7 @@ import {
     channel3,
     channel4,
     mockMessages,
+    mockChannels,
 } from "./channels.js";
 
 /* Variables */
@@ -16,11 +17,7 @@ let numberOfChannels = 4; // Saves the number of channels
 // executes when the app is loaded
 window.init = function () {
     console.log("App is initialized");
-    getChannels();
-    getMessages();
-    initLastMessage();
-    getLists();
-    isFavorite();
+    atualize();
     // loadMessagesIntoChannel();
     // displayChannels();
     // loadEmojis();
@@ -30,12 +27,72 @@ window.init = function () {
     document
         .querySelector("#input-area input")
         .addEventListener("keypress", treatSendKey);
-    // document
-    //     .getElementById("emoticon-button")
-    //     .addEventListener("click", toggleEmojiArea);
-    // document
-    //     .getElementById("close-emoticon-button")
-    //     .addEventListener("click", toggleEmojiArea);
+    document
+        .querySelector("#action-button")
+        .addEventListener("click", createNewChannel);
+    document.querySelector("#cancel").addEventListener("click", cancel);
+    document.querySelector("#create").addEventListener("click", newChannel);
+    //     document
+    //         .getElementById("emoticon-button")
+    //         .addEventListener("click", toggleEmojiArea);
+    //     document
+    //         .getElementById("close-emoticon-button")
+    //         .addEventListener("click", toggleEmojiArea);
+};
+
+const atualize = () => {
+    getChannels();
+    getMessages();
+    initLastMessage();
+    getLists();
+    isFavorite();
+};
+
+const cancel = () => {
+    var body = document.querySelector(".all");
+    body.classList.remove("blur");
+
+    var popup = document.querySelector(".new-channel");
+    popup.classList.add("display");
+    popup.classList.remove("new-channel");
+};
+const newChannel = () => {
+    var name = document.querySelector(".new-channel input");
+    var totalChannels = channels.length;
+
+    // Verifica se já existe
+    channels.forEach((element) => {
+        if (element.name == name.value) {
+            window.alert("Channel name already exists!");
+            return;
+        }
+    });
+
+    const channelNew = Object.create(mockChannels);
+
+    // create new channel
+    channelNew.id = "ch" + String(totalChannels + 1);
+    channelNew.name = name.value;
+    channelNew.favorite = false;
+    channelNew.messages = [];
+    channelNew.latestMessage = "No messages";
+
+    channels.push(channelNew);
+
+    atualize();
+
+    name.value = "";
+
+    cancel();
+};
+
+const createNewChannel = () => {
+    var popup = document.querySelector(".display");
+    popup.classList.remove("display");
+
+    var body = document.querySelector(".all");
+    body.classList.add("blur");
+    popup.classList.add("new-channel");
 };
 
 const treatSendKey = () => {

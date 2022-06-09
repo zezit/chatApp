@@ -1,4 +1,4 @@
-export { channel1, channel2, channel3, channel4, mockMessages };
+export { channel1, channel2, channel3, channel4, mockMessages, mockChannels };
 
 // array that stores channels informations
 const mockChannels = [

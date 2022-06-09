@@ -20,83 +20,95 @@
     </head>
 
     <body onload="init()">
-        <!-- Channels area -->
-        <section class="app_bar">
-            <!-- Title of the page (app title) -->
-            <div class="headbar">
-                <img
-                    id="app_logo"
-                    src="https://ip.lfe.mw.tum.de/sections/moocus.png"
-                    alt="app logo"
-                />
-                <h1>chatter | app</h1>
-            </div>
-            <a href="#" class="fab" id="action-button">+</a>
-
-            <h2 id="fav">Favorites</h2>
-            <div class="channel-list" >
-                <!-- Channels -->
-                <ul id="favorite-channels">
-                    <li onclick="switchChannel('ch1')">
-                        <i class="material-icons">group</i
-                        ><span id="ch1">Friends</span><small>09:11</small>
-                    </li>
-                    <li class="selected" onclick="switchChannel('ch2')">
-                        <i class="material-icons">group</i
-                        ><span id="ch2">College</span><small>15:30</small>
-                    </li>
-                </ul>
-            </div>
-            <h2 id="reg">Regular</h2>
-            <div class="channel-list" >
-                <ul id="regular-channels">
-                    <li onclick="switchChannel('ch3')">
-                        <i class="material-icons">group</i
-                        ><span id="ch3">Work</span><small>Monday</small>
-                    </li>
-                    <li onclick="switchChannel('ch4')">
-                        <i class="material-icons">group</i
-                        ><span id="ch4">Gym</span><small>16 May 2022</small>
-                    </li>
-                </ul>
-                <!-- end of Channels -->
+        <div class="backish"></div>
+        <section class="display">
+            <h3>Channel Name</h3>
+            <input type="text" />
+            <div>
+                <button id="cancel">cancel</button>
+                <button id="create">create</button>
             </div>
         </section>
-
-        <!-- Chat area -->
-        <section class="messages">
-            <!-- Group name -->
-            <div class="headbar">
-                <h1 id="channelName">College</h1>
-                <!-- favorite button -->
-                <a
-                    id="favorite-bt"
-                    href="#"
-                    class="material-icons"
-                    onclick="add_to_fav()"
-                    >favorite</a
-                >
-            </div>
-            <div class="all-mes">
-                <div class="all-mes-wraper"></div>
-                <div id="input-area">
-                    <i class="material-icons" id="emoticon-button"
-                        >insert_emoticon</i
-                    >
-                    <input
-                        type="text"
-                        id="message-input"
-                        name="message-input"
-                        minlength="1"
-                        maxlength="500"
-                        placeholder="... write your message"
+        <section class="all">
+            <!-- Channels area -->
+            <section class="app_bar">
+                <!-- Title of the page (app title) -->
+                <div class="headbar">
+                    <img
+                        id="app_logo"
+                        src="https://ip.lfe.mw.tum.de/sections/moocus.png"
+                        alt="app logo"
                     />
-                    <a class="material-icons button" id="send-button">send</a>
+                    <h1>chatter | app</h1>
                 </div>
-                <div id="bottom"></div>
-            </div>
-        </section>
+                <a href="#" class="fab" id="action-button">+</a>
 
+                <h2 id="fav">Favorites</h2>
+                <div class="channel-list">
+                    <!-- Channels -->
+                    <ul id="favorite-channels">
+                        <li onclick="switchChannel('ch1')">
+                            <i class="material-icons">group</i
+                            ><span id="ch1">Friends</span><small>09:11</small>
+                        </li>
+                        <li class="selected" onclick="switchChannel('ch2')">
+                            <i class="material-icons">group</i
+                            ><span id="ch2">College</span><small>15:30</small>
+                        </li>
+                    </ul>
+                </div>
+                <h2 id="reg">Regular</h2>
+                <div class="channel-list">
+                    <ul id="regular-channels">
+                        <li onclick="switchChannel('ch3')">
+                            <i class="material-icons">group</i
+                            ><span id="ch3">Work</span><small>Monday</small>
+                        </li>
+                        <li onclick="switchChannel('ch4')">
+                            <i class="material-icons">group</i
+                            ><span id="ch4">Gym</span><small>16 May 2022</small>
+                        </li>
+                    </ul>
+                    <!-- end of Channels -->
+                </div>
+            </section>
+
+            <!-- Chat area -->
+            <section class="messages">
+                <!-- Group name -->
+                <div class="headbar">
+                    <h1 id="channelName">College</h1>
+                    <!-- favorite button -->
+                    <a
+                        id="favorite-bt"
+                        href="#"
+                        class="material-icons"
+                        onclick="add_to_fav()"
+                        >favorite</a
+                    >
+                </div>
+                <div class="all-mes">
+                    <div class="all-mes-wraper"></div>
+                    <div id="input-area">
+                        <i class="material-icons" id="emoticon-button"
+                            >insert_emoticon</i
+                        >
+                        <input
+                            type="text"
+                            id="message-input"
+                            name="message-input"
+                            minlength="1"
+                            maxlength="500"
+                            placeholder="... write your message"
+                        />
+                        <a class="material-icons button" id="send-button"
+                            >send</a
+                        >
+                    </div>
+                    <div id="bottom"></div>
+                </div>
+            </section>
+        </section>
         <!-- js files -->
         <script type="module" src="./script/main.js"></script>
         <script src="./script/channels.js"></script>
