@@ -11,6 +11,7 @@ import {
 let channels = [];
 
 let selectedChannel = 1;
+let toChangeTime;
 var channel_name;
 let numberOfChannels = 4; // Saves the number of channels
 /* Functions */
@@ -18,20 +19,29 @@ let numberOfChannels = 4; // Saves the number of channels
 window.init = function () {
     console.log("App is initialized");
     atualize();
-    // loadMessagesIntoChannel();
-    // displayChannels();
-    // loadEmojis();
+
+    // send area
     document
         .getElementById("send-button")
         .addEventListener("click", sendMessage);
     document
         .querySelector("#input-area input")
         .addEventListener("keypress", treatSendKey);
+
+    // new channel
     document
         .querySelector("#action-button")
         .addEventListener("click", createNewChannel);
+    document
+        .querySelector("#new-channel-name")
+        .parentElement.addEventListener("keydown", treatCreateNewChannelKeys);
+    document
+        .querySelectorAll("section")[0]
+        .addEventListener("keydown", treatCancelNewChannelKeys);
     document.querySelector("#cancel").addEventListener("click", cancel);
     document.querySelector("#create").addEventListener("click", newChannel);
+
+    // emoji area
     //     document
     //         .getElementById("emoticon-button")
     //         .addEventListener("click", toggleEmojiArea);
@@ -43,7 +53,7 @@ window.init = function () {
 const atualize = () => {
     getChannels();
     getMessages();
-    initLastMessage();
+    initLastMessage(channels[selectedChannel].latestMessage);
     getLists();
     isFavorite();
 };
@@ -58,32 +68,38 @@ const cancel = () => {
 };
 const newChannel = () => {
     var name = document.querySelector(".new-channel input");
-    var totalChannels = channels.length;
+    if (name.value) {
+        var totalChannels = channels.length;
 
-    // Verifica se já existe
-    channels.forEach((element) => {
-        if (element.name == name.value) {
-            window.alert("Channel name already exists!");
-            return;
-        }
-    });
+        // Verifica se já existe
+        channels.forEach((element) => {
+            if (element.name == name.value) {
+                window.alert("Channel name already exists!");
+                return;
+            }
+        });
 
-    const channelNew = Object.create(mockChannels);
+        const channelNew = Object.create(mockChannels);
 
-    // create new channel
-    channelNew.id = "ch" + String(totalChannels + 1);
-    channelNew.name = name.value;
-    channelNew.favorite = false;
-    channelNew.messages = [];
-    channelNew.latestMessage = "No messages";
+        // create new channel
+        channelNew.id = "ch" + String(totalChannels + 1);
+        channelNew.name = name.value;
+        channelNew.favorite = false;
+        channelNew.messages = [];
+        channelNew.latestMessage = "No messages";
 
-    channels.push(channelNew);
+        channels.push(channelNew);
 
-    atualize();
+        atualize();
 
-    name.value = "";
+        name.value = "";
 
-    cancel();
+        cancel();
+
+        switchChannel(channelNew.id);
+    } else {
+        window.alert("You have to insert a name!");
+    }
 };
 
 const createNewChannel = () => {
@@ -101,11 +117,23 @@ const treatSendKey = () => {
     }
 };
 
-window.getLists = function () {
+const treatCreateNewChannelKeys = () => {
+    if (window.event.key === "Enter") {
+        document.getElementById("create").click();
+    }
+};
+const treatCancelNewChannelKeys = () => {
+    if (window.event.key === "Escape") {
+        document.getElementById("cancel").click();
+    }
+};
+
+const getLists = () => {
     const favoriteList = document.getElementById("favorite-channels");
     const regularList = document.getElementById("regular-channels");
 
     let favoritesCount = 0;
+    let timeLastMessage;
     // clear lists
     favoriteList.innerHTML = "";
     regularList.innerHTML = "";
@@ -133,7 +161,6 @@ window.getLists = function () {
             div.innerHTML += currentListHtml;
         } else {
             // console.log(element);
-            favoritesCount++;
             const currentListHtml =
                 `<li onclick="switchChannel('` +
                 element.id +
@@ -152,6 +179,15 @@ window.getLists = function () {
             div.innerHTML += currentListHtml;
         }
     });
+
+    // console.log("fav:" + favoritesCount);
+    if (!favoritesCount) {
+        const currentListHtml = `<li>None</li>`;
+
+        const div = document.querySelector("#favorite-channels");
+        // console.log(currentListHtml);
+        div.innerHTML += currentListHtml;
+    }
 
     document
         .getElementById(channels[selectedChannel].id)
@@ -220,14 +256,39 @@ window.getMessages = function () {
                         </div>
                     </div>`;
             }
-            // console.log(messageContainer);
             const div = document.querySelector(".all-mes-wraper");
             if (messageContainer != "") {
                 div.innerHTML += messageContainer;
             }
         });
     }
-    // initLastMessage();
+};
+
+const timeFormated = (aux) => {
+    var lastTime;
+    if (aux.getHours() < 10) {
+        // console.log("hour less than 10");
+        lastTime = "0";
+        lastTime += aux.getHours();
+        // console.log("Last: " + lastTime);
+    } else {
+        lastTime = aux.getHours();
+    }
+    // console.log("Last: " + aux.getHours());
+
+    lastTime += ":";
+    // console.log("Last: " + lastTime);
+
+    if (aux.getMinutes() < 10) {
+        // console.log("minutes less than 10");
+        lastTime += "0";
+        // console.log("Last: " + lastTime);
+    }
+    lastTime += aux.getMinutes();
+    lastTime = String(lastTime);
+    // console.log("Last: " + lastTime);
+
+    return lastTime;
 };
 
 function attLastMessage() {
@@ -237,32 +298,33 @@ function attLastMessage() {
     // cria instancia de tempo
     aux = new Date();
     // Salva hora e minuto
-    lastTime = aux.getHours() + ":" + aux.getMinutes();
-    channels[selectedChannel].latestMessae = lastTime;
-    initLastMessage();
-    getLists();
-    // atualiza tempo da ultima menssagem
-    // atualiza html
-    // const smallTime = document
-    // .querySelector("#" + channels[selectedChannel].id)
-    // .parentElement.getElementsByTagName("small");
-    // smallTime.outterHtml = "";
+    lastTime = timeFormated(aux);
+    // lastTime = aux.getHours() + ":" + aux.getMinutes();
+    channels[selectedChannel].latestMessage = lastTime;
+    // initLastMessage(lastTime);
+
+    getIndividualLastTime(lastTime);
 }
 
-function initLastMessage() {
-    var lastTime = "",
-        aux,
-        size;
+const getIndividualLastTime = (lastTime) => {
+    toChangeTime.lastElementChild.innerHTML = lastTime;
+};
+
+function initLastMessage(lastTime) {
+    // var lastTime = "",
+    var aux, size;
     channels.forEach((element) => {
         size = element.messages.length;
         if (size < 0) {
             size = 0;
         }
         if (size != 0) {
-            aux = new Date(element.messages[size - 1].createdOn);
-            lastTime = aux.getHours() + ":" + aux.getMinutes();
-            // console.log(lastTime);
+            // aux = new Date(element.messages[size - 1].createdOn);
+            // lastTime = aux.getHours() + ":" + aux.getMinutes();
             element.latestMessage = lastTime;
+            // console.log(element.name);
+            // console.log(lastTime);
+            // console.log(element.latestMessage);
         }
     });
     // getLists();
@@ -373,9 +435,7 @@ window.sendMessage = function () {
                 </div>
 
                 <small>` +
-        hours +
-        ":" +
-        minutes +
+        timeFormated(current) +
         `</small>
             </div>
             <div class="inc-icon">
@@ -390,8 +450,45 @@ window.sendMessage = function () {
 
     document.getElementById("message-input").value = "";
     bottom();
-    console.log(channels[selectedChannel].messages);
+    // console.log(chaannels[selectedChannel].messages);
+    if (channels[selectedChannel].favorite) {
+        reorganizeLists(
+            channels[selectedChannel].id,
+            "#favorite-channels",
+            document.querySelector("#" + channels[selectedChannel].id)
+                .parentElement
+        );
+    } else {
+        reorganizeLists(
+            channels[selectedChannel].id,
+            "#regular-channels",
+            document.querySelector("#" + channels[selectedChannel].id)
+                .parentElement
+        );
+    }
     attLastMessage();
+};
+
+const reorganizeLists = (channel, classSel, li) => {
+    // ul
+    toChangeTime = li;
+    var test = classSel.replace("#", "");
+    const reorganize = document.getElementById(test);
+    console.log(reorganize);
+    var shuffle = document.querySelectorAll(classSel + " li");
+    console.log(shuffle);
+    // specific li
+    channel = classSel + " #" + channel;
+    reorganize.innerHTML = "";
+    // reorganize
+
+    reorganize.appendChild(li);
+    for (var i = 0; i < shuffle.length; i++) {
+        if (shuffle[i] == li) {
+            continue;
+        }
+        reorganize.appendChild(shuffle[i]);
+    }
 };
 
 // auto scroll page

@@ -36,7 +36,7 @@ channel2.favorite = false;
 channel2.messages = [];
 channel2.messages.push(Channel1Message1);
 channel2.messages.push(Channel1Message2);
-channel2.latestMessage = "No messages";
+channel2.latestMessage = "19:13";
 
 const channel3 = Object.create(mockChannels);
 channel3.id = "ch3";
